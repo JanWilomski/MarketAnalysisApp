@@ -32,5 +32,6 @@ typing_extensions==4.12.2
 tzdata==2024.1
 update-checker==0.18.0
 urllib3==2.2.2
+vaderSentiment==3.3.2
 websocket-client==1.8.0
 whitenoise==6.7.0

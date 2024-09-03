@@ -1,6 +1,6 @@
 import praw
 import prawcore
-from textblob import TextBlob
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import matplotlib.pyplot as plt
 from django.shortcuts import render
 from django.conf import settings
@@ -21,14 +21,15 @@ def analyze_sentiment(request):
     asset = request.GET.get('asset', None)
     if asset:
         reddit = get_reddit_instance()
+        analyzer = SentimentIntensityAnalyzer()  # Inicjalizacja VADER
         try:
             subreddit = reddit.subreddit(asset)
             sentiments = []
 
-            for submission in subreddit.hot(limit=100):
-                analysis = TextBlob(submission.title)
-                sentiment_polarity = analysis.sentiment.polarity
-
+            for submission in subreddit.hot(limit=1000):
+                sentiment_scores = analyzer.polarity_scores(submission.title)
+                sentiment_polarity = sentiment_scores['compound']  # Użycie wyniku z VADER
+                #sentiments.append(sentiment_polarity)
                 if sentiment_polarity != 0.0:
                     sentiments.append(sentiment_polarity)
 
