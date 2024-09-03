@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis</title>
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'SentimentAnalysisApp/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Sentiment Analysis for a Market Asset</h1>
+        <form method="get" action="{% url 'analyze_sentiment' %}">
+            <label for="asset">Enter Asset Name (e.g., Bitcoin):</label>
+            <input type="text" id="asset" name="asset" class="input-field">
+            <button type="submit" class="button">Analyze</button>
+        </form>
+    </div>
+</body>
+</html>
