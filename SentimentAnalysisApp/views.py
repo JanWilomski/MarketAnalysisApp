@@ -24,7 +24,7 @@ def analyze_sentiment(request):
 
         sentiments = []
 
-        for submission in subreddit.hot(limit=100):
+        for submission in subreddit.hot(limit=1000):
             analysis = TextBlob(submission.title)
             sentiment_polarity = analysis.sentiment.polarity
 
