@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-b-t9ok7l=pb6+rnpjktrtn*c^&tilsm+7l-!qo5bblj5h=6sl9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 #ALLOWED_HOSTS = []
 
@@ -32,7 +32,7 @@ ALLOWED_HOSTS = ['marketanalysisapp.azurewebsites.net', 'localhost', '127.0.0.1'
 
 REDDIT_CLIENT_ID = 'YKu453Lvy3bSDEva7iTotw'
 REDDIT_CLIENT_SECRET = 'VI7x97scByFO7gPic8iZG2_RevINPQ'
-REDDIT_USER_AGENT = 'VI7x97scByFO7gPic8iZG2_RevINPQ'
+REDDIT_USER_AGENT = 'Market analysis app'
 
 
 
