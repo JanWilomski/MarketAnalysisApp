@@ -8,7 +8,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    flex-direction: column; /* Upewnij się, że elementy są układane pionowo */
+    flex-direction: column;
 }
 
 .container {
@@ -48,23 +48,10 @@ h1, h2 {
     cursor: pointer;
     font-weight: bold;
     transition: background-color 0.3s;
-    display: block; /* Zmiana na block, aby przycisk zajmował całą szerokość */
-    margin: 20px auto 0; /* Dodanie marginesu, aby przycisk był poniżej wykresu */
+    display: block;
+    margin: 20px auto 0;
 }
 
 .button:hover {
     background-color: #0288D1;
-}
-
-.chart {
-    margin-top: 20px;
-    max-width: 100%;
-    max-height: 300px;
-    height: auto;
-    border-radius: 10px;
-}
-
-.sentiment {
-    font-size: 1.5em;
-    color: #03A9F4;
 }

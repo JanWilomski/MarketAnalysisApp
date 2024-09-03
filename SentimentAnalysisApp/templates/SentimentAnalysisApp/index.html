@@ -7,15 +7,40 @@
     {% load static %}
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'SentimentAnalysisApp/styles.css' %}">
+    <style>
+        /* Animacja ładowania */
+        .loader {
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #03A9F4;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+            display: none;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>Sentiment analysis for market asset</h1>
-        <form method="get" action="{% url 'analyze_sentiment' %}">
-            <label for="asset">Enter asset name:</label>
-            <input type="text" id="asset" name="asset" class="input-field">
+        <h1>Sentiment Analysis for a Market Asset</h1>
+        <form method="get" action="{% url 'analyze_sentiment' %}" onsubmit="showLoader()">
+            <label for="asset">Enter Asset Name (e.g., Bitcoin):</label>
+            <input type="text" id="asset" name="asset" class="input-field" required>
             <button type="submit" class="button">Analyze</button>
         </form>
+        <div class="loader" id="loader"></div>
     </div>
+
+    <script>
+        function showLoader() {
+            document.getElementById('loader').style.display = 'block';
+        }
+    </script>
 </body>
 </html>
