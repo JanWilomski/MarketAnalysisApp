@@ -24,7 +24,7 @@ def analyze_sentiment(request):
 
         sentiments = []
 
-        for submission in subreddit.hot(limit=1000):
+        for submission in subreddit.hot(limit=100):
             analysis = TextBlob(submission.title)
             sentiment_polarity = analysis.sentiment.polarity
 
@@ -34,7 +34,7 @@ def analyze_sentiment(request):
         avg_sentiment = sum(sentiments) / len(sentiments) if sentiments else 0
 
         # Tworzenie histogramu z mniejszym rozmiarem
-        plt.figure(figsize=(8, 4), dpi=150)  # Zmniejszamy rozmiar i zwiększamy jakość (DPI)
+        plt.figure(figsize=(6, 3), dpi=150)  # Zmniejszamy rozmiar i zwiększamy jakość (DPI)
         plt.hist(sentiments, bins=np.linspace(-1, 1, 20), edgecolor='black')
         plt.title(f'Sentiment Analysis for {asset}')
         plt.xlabel('Sentiment Polarity')

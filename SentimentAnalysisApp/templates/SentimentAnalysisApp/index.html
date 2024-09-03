@@ -10,7 +10,7 @@
     <style>
         /* Stylizacja animacji kropek */
         .loader {
-            display: flex;
+            display: none; /* Ukrywanie loadera na początku */
             justify-content: center;
             align-items: center;
             margin-top: 20px;
@@ -49,9 +49,9 @@
 </head>
 <body>
     <div class="container">
-        <h1>Sentiment analysis for a market asset</h1>
+        <h1>Sentiment Analysis for a Market Asset</h1>
         <form method="get" action="{% url 'analyze_sentiment' %}" onsubmit="showLoader()">
-            <label for="asset">Enter asset name:</label>
+            <label for="asset">Enter Asset Name (e.g., Bitcoin):</label>
             <input type="text" id="asset" name="asset" class="input-field" required>
             <button type="submit" class="button">Analyze</button>
         </form>
