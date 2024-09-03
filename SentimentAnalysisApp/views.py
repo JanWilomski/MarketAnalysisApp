@@ -57,7 +57,7 @@ def analyze_sentiment(request):
             subreddit = reddit.subreddit(asset)
             sentiments = []
 
-            for submission in subreddit.hot(limit=100):
+            for submission in subreddit.hot(limit=1000):
                 sentiment_scores = analyzer.polarity_scores(submission.title)
                 sentiment_polarity = sentiment_scores['compound']  # Użycie wyniku z VADER
 
