@@ -17,19 +17,50 @@ def get_reddit_instance():
     )
 
 
+def customize_vader_for_finance():
+    analyzer = SentimentIntensityAnalyzer()
+
+    # Dodanie nowych terminów finansowych do słownika VADER
+    new_words = {
+        'bullish': 2.0,  # bardzo pozytywny w kontekście giełdowym
+        'bearish': -2.0,  # bardzo negatywny w kontekście giełdowym
+        'buy': 1.5,  # pozytywny
+        'sell': -1.5,  # negatywny
+        'strong buy': 2.5,  # bardzo pozytywny
+        'strong sell': -2.5,  # bardzo negatywny
+        'profit': 2.0,  # pozytywny
+        'loss': -2.0,  # negatywny
+        'gain': 2.0,  # pozytywny
+        'short': -1.5,  # negatywny
+        'long': 1.5,  # pozytywny
+        'volatility': -1.0,  # negatywny
+        'risk': -1.5,  # negatywny
+        'uncertainty': -1.5,  # negatywny
+        'downgrade': -2.0,  # bardzo negatywny
+        'upgrade': 2.0,  # pozytywny
+        'undervalued': 1.5,  # pozytywny
+        'overvalued': -1.5,  # negatywny
+        'earnings': 2.0,  # pozytywny
+        'dividends': 2.0,  # pozytywny
+    }
+
+    analyzer.lexicon.update(new_words)
+    return analyzer
+
+
 def analyze_sentiment(request):
     asset = request.GET.get('asset', None)
     if asset:
         reddit = get_reddit_instance()
-        analyzer = SentimentIntensityAnalyzer()  # Inicjalizacja VADER
+        analyzer = customize_vader_for_finance()  # Użycie dostosowanego VADER
         try:
             subreddit = reddit.subreddit(asset)
             sentiments = []
 
-            for submission in subreddit.hot(limit=1000):
+            for submission in subreddit.hot(limit=100):
                 sentiment_scores = analyzer.polarity_scores(submission.title)
                 sentiment_polarity = sentiment_scores['compound']  # Użycie wyniku z VADER
-                #sentiments.append(sentiment_polarity)
+
                 if sentiment_polarity != 0.0:
                     sentiments.append(sentiment_polarity)
 
