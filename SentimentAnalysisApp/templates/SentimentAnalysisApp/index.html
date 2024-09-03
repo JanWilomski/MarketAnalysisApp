@@ -49,9 +49,9 @@
 </head>
 <body>
     <div class="container">
-        <h1>Sentiment Analysis for a Market Asset</h1>
+        <h1>Sentiment analysis for a market asset</h1>
         <form method="get" action="{% url 'analyze_sentiment' %}" onsubmit="showLoader()">
-            <label for="asset">Enter Asset Name (e.g., Bitcoin):</label>
+            <label for="asset">Enter asset name:</label>
             <input type="text" id="asset" name="asset" class="input-field" required>
             <button type="submit" class="button">Analyze</button>
         </form>
@@ -65,7 +65,14 @@
     <script>
         function showLoader() {
             document.getElementById('loader').style.display = 'flex';
+            history.pushState({ submit: true }, 'Sentiment Analysis', window.location.href);
         }
+
+        window.onpopstate = function(event) {
+            if (event.state && event.state.submit) {
+                document.getElementById('loader').style.display = 'none';
+            }
+        };
     </script>
 </body>
 </html>
