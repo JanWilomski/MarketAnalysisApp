@@ -10,8 +10,8 @@
 </head>
 <body>
     <div class="container">
-        <h1>Results for {{ asset }}</h1>
-        <p>Average Sentiment: <span class="sentiment">{{ avg_sentiment }}</span></p>
+        <h1>Results for "{{ asset }}"</h1>
+        <p>Average sentiment: <span class="sentiment">{{ avg_sentiment }}</span></p>
         <img src="data:image/png;base64,{{ sentiment_chart }}" alt="Sentiment Chart" class="chart">
 
         <a href="{% url 'analyze_sentiment' %}" class="button">Analyze another asset</a>
